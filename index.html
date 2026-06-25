@@ -1,0 +1,848 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <script src="/_sdk/telemetry_sdk.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Walter &amp; Maria - Boda</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=DM+Sans:wght@400;500&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="/_sdk/data_sdk.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+    <style>
+      header {
+        background-attachment: fixed;
+      }
+      body {
+        font-family: "DM Sans", sans-serif;
+      }
+      h1 {
+        font-size: clamp(72px, 10vw, 140px);
+        letter-spacing: 3px;
+        text-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+      }
+      .subtitle {
+        font-size: clamp(28px, 4vw, 42px);
+      }
+      .verse {
+        font-size: 24px;
+        line-height: 1.9;
+      }
+      h2,
+      h3,
+      .elegant {
+        font-family: "Playfair Display", serif;
+      }
+      .hero-overlay {
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.15),
+          rgba(0, 0, 0, 0.55)
+        );
+      }
+      .countdown-box {
+        backdrop-filter: blur(4px);
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+      .carousel-container {
+        overflow: hidden;
+      }
+      .carousel-track {
+        display: flex;
+        transition: transform 0.5s ease;
+      }
+      .carousel-track img {
+        min-width: 100%;
+        object-fit: cover;
+      }
+      .color-circle {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 2px solid #d4af37;
+      }
+      @keyframes fadeZoom {
+        from {
+          opacity: 0;
+          transform: scale(1.12);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .hero-animated {
+        animation: fadeZoom 2s ease forwards;
+      }
+
+      button {
+        background: linear-gradient(135deg, #d4af37, #f2d675);
+        color: white;
+        border: none;
+        padding: 15px 32px;
+        border-radius: 50px;
+        font-size: 18px;
+        cursor: pointer;
+        box-shadow: 0 10px 25px rgba(212, 175, 55, 0.35);
+        transition: all 0.35s ease;
+      }
+
+      button:hover {
+        transform: translateY(-4px) scale(1.04);
+        box-shadow: 0 18px 35px rgba(212, 175, 55, 0.55);
+      }
+
+      .countdown-box {
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.06);
+        }
+      }
+      #musicModal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+
+      .carousel-track img {
+        border-radius: 24px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background:
+          radial-gradient(
+            circle at 20% 20%,
+            rgba(212, 175, 55, 0.15),
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(212, 175, 55, 0.12),
+            transparent 40%
+          );
+        pointer-events: none;
+      }
+    </style>
+    <script src="/_sdk/resizing_sdk.js" type="text/javascript"></script>
+  </head>
+  <body
+    data-template-id="__page-root"
+    class="min-h-screen w-full"
+    style="background: rgb(253, 250, 246)"
+  >
+    <!-- Hero -->
+    <header
+      class="relative w-full"
+      style="height: calc(100 * min(var(--vh, 1vh), 1vh))"
+    >
+      <img
+        data-template-id="hero-image"
+        class="canva-image absolute inset-0 w-full h-full object-cover"
+        loading="lazy"
+        src="https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920"
+        alt="A young couple enjoying a romantic beach wedding during a vibrant sunset."
+      />
+      <div
+        class="hero-overlay hero-animated absolute inset-0 flex flex-col items-center justify-center text-center px-6"
+      >
+        <h1
+          data-template-id="main-title"
+          class="canva-text text-white drop-shadow-lg"
+          style="
+            color: rgb(255, 255, 255);
+            font-weight: 700;
+            font-style: normal;
+            font-size: 52px;
+          "
+        >
+          Walter &amp; Maria
+        </h1>
+        <p
+          data-template-id="subtitle"
+          class="canva-text mt-2 text-white/90 drop-shadow"
+          style="
+            color: rgb(255, 255, 255);
+            font-weight: 400;
+            font-style: normal;
+            font-size: 20px;
+          "
+        >
+          Nuestra Boda · 11 de Julio del 2026
+        </p>
+        <p
+          data-template-id="bible-verse"
+          class="canva-text mt-6 max-w-lg text-white/80 italic drop-shadow"
+          style="
+            color: rgb(255, 255, 255);
+            font-weight: 400;
+            font-style: italic;
+            font-size: 16px;
+          "
+        >
+          "Así que ya no son dos, sino una sola carne. Por tanto, lo que Dios ha
+          unido, que no lo separe el hombre." — Mateo 19:6
+        </p>
+      </div>
+      
+    </header>
+    <!-- Countdown -->
+    <section
+      data-template-id="countdown-section"
+      class="canva-section py-16 text-center px-6"
+      style="background: rgb(74, 90, 43)"
+    >
+      <h2
+        data-template-id="save-date-heading"
+        class="canva-text mb-2"
+        style="
+          color: rgb(212, 175, 55);
+          font-weight: 600;
+          font-style: normal;
+          font-size: 24px;
+        "
+      >
+        Reserva la Fecha
+      </h2>
+      <p
+        data-template-id="save-date-text"
+        class="canva-text mb-8"
+        style="
+          color: rgb(255, 255, 255);
+          font-weight: 400;
+          font-style: normal;
+          font-size: 18px;
+        "
+      >
+        Sábado 11 de Julio del 2026
+      </p>
+      <div id="countdown" class="flex justify-center gap-4 flex-wrap">
+        <div
+          class="countdown-box rounded-xl px-5 py-4 text-center min-w-[80px]"
+        >
+          <span id="cd-days" class="text-3xl font-bold text-white elegant"
+            >0</span
+          >
+          <p class="text-white/70 text-sm mt-1">Días</p>
+        </div>
+        <div
+          class="countdown-box rounded-xl px-5 py-4 text-center min-w-[80px]"
+        >
+          <span id="cd-hours" class="text-3xl font-bold text-white elegant"
+            >0</span
+          >
+          <p class="text-white/70 text-sm mt-1">Horas</p>
+        </div>
+        <div
+          class="countdown-box rounded-xl px-5 py-4 text-center min-w-[80px]"
+        >
+          <span id="cd-mins" class="text-3xl font-bold text-white elegant"
+            >0</span
+          >
+          <p class="text-white/70 text-sm mt-1">Min</p>
+        </div>
+        <div
+          class="countdown-box rounded-xl px-5 py-4 text-center min-w-[80px]"
+        >
+          <span id="cd-secs" class="text-3xl font-bold text-white elegant"
+            >0</span
+          >
+          <p class="text-white/70 text-sm mt-1">Seg</p>
+        </div>
+      </div>
+    </section>
+    <!-- Events -->
+    <section class="relative py-16 px-6">
+      <img
+        data-template-id="flowers-bg"
+        class="canva-image absolute inset-0 w-full h-full object-cover opacity-30"
+        loading="lazy"
+        src="https://images.pexels.com/photos/17294725/pexels-photo-17294725.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1280"
+        alt="A lush display of green foliage and white flowers as a wedding table decoration."
+      />
+      <div class="relative z-10 max-w-2xl mx-auto text-center">
+        <h2
+          data-template-id="events-heading"
+          class="canva-text mb-10"
+          style="
+            color: rgb(61, 43, 31);
+            font-weight: 600;
+            font-style: normal;
+            font-size: 24px;
+          "
+        >
+          Acompáñanos a Nuestro Gran Día
+        </h2>
+        <div class="mb-10">
+          <div class="inline-block mb-2">
+            <i data-lucide="church" class="w-8 h-8 text-[#6b7f3b]"></i>
+          </div>
+          <h3
+            data-template-id="ceremony-title"
+            class="canva-text mb-1"
+            style="
+              color: rgb(61, 43, 31);
+              font-weight: 600;
+              font-style: normal;
+              font-size: 20px;
+            "
+          >
+            Ceremonia Religiosa
+          </h3>
+          <p
+            data-template-id="ceremony-time"
+            class="canva-text mb-1"
+            style="
+              color: rgb(107, 127, 59);
+              font-weight: 600;
+              font-style: normal;
+              font-size: 16px;
+            "
+          >
+            17:00 PM
+          </p>
+          <p
+            data-template-id="ceremony-address"
+            class="canva-text mb-3"
+            style="
+              color: rgb(74, 74, 74);
+              font-weight: 400;
+              font-style: normal;
+              font-size: 14px;
+            "
+          >
+            Iglesia Católica Beata Mercedes de Jesús Molina, Samanes 5, Av.
+            Isidro Ayora Cueva
+          </p>
+          <a
+            href="https://maps.google.com/?q=Iglesia+Católica+Beata+Mercedes+de+Jesús+Molina+Samanes+5+Guayaquil"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button
+              data-template-id="ceremony-map-btn"
+              class="canva-button px-5 py-2 rounded-full text-sm"
+              style="
+                background: rgb(107, 127, 59);
+                color: rgb(255, 255, 255);
+                font-weight: 500;
+                font-style: normal;
+                font-size: 16px;
+              "
+            >
+              Ver en Maps
+            </button>
+          </a>
+        </div>
+        <div>
+          <div class="inline-block mb-2">
+            <i data-lucide="glass-water" class="w-8 h-8 text-[#6b7f3b]"></i>
+          </div>
+          <h3
+            data-template-id="reception-title"
+            class="canva-text mb-1"
+            style="
+              color: rgb(61, 43, 31);
+              font-weight: 600;
+              font-style: normal;
+              font-size: 20px;
+            "
+          >
+            Recepción
+          </h3>
+          <p
+            data-template-id="reception-time"
+            class="canva-text mb-1"
+            style="
+              color: rgb(107, 127, 59);
+              font-weight: 600;
+              font-style: normal;
+              font-size: 16px;
+            "
+          >
+            19:00 PM
+          </p>
+          <p
+            data-template-id="reception-address"
+            class="canva-text mb-3"
+            style="
+              color: rgb(74, 74, 74);
+              font-weight: 400;
+              font-style: normal;
+              font-size: 14px;
+            "
+          >
+            Edificio Las Cámaras, Av. Francisco de Orellana y Av. Miguel H.
+            Alcívar
+          </p>
+          <a
+            href="https://maps.google.com/?q=Edificio+Las+Cámaras+Av+Francisco+de+Orellana+y+Miguel+H+Alcívar+Guayaquil"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button
+              data-template-id="reception-map-btn"
+              class="canva-button px-5 py-2 rounded-full text-sm"
+              style="
+                background: rgb(107, 127, 59);
+                color: rgb(255, 255, 255);
+                font-weight: 500;
+                font-style: normal;
+                font-size: 16px;
+              "
+            >
+              Ver en Maps
+            </button>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- Dress Code -->
+    <section
+      data-template-id="dresscode-section"
+      class="canva-section py-16 px-6 text-center"
+      style="background: rgb(255, 255, 255)"
+    >
+      <h2
+        data-template-id="dresscode-heading"
+        class="canva-text mb-2"
+        style="
+          color: rgb(61, 43, 31);
+          font-weight: 600;
+          font-style: normal;
+          font-size: 24px;
+        "
+      >
+        Detalles para una Velada Perfecta
+      </h2>
+      <p
+        data-template-id="dresscode-sub"
+        class="canva-text mb-8"
+        style="
+          color: rgb(74, 74, 74);
+          font-weight: 400;
+          font-style: normal;
+          font-size: 16px;
+        "
+      >
+        Código de vestimenta: Formal · Etiqueta de Noche
+      </p>
+      <p
+        data-template-id="dresscode-colors-label"
+        class="canva-text mb-4"
+        style="
+          color: rgb(107, 127, 59);
+          font-weight: 500;
+          font-style: normal;
+          font-size: 14px;
+        "
+      >
+        Colores reservados
+      </p>
+      <div class="flex justify-center gap-4 flex-wrap">
+        <div class="flex flex-col items-center gap-1">
+          <div class="color-circle" style="background: #ffffff"></div>
+          <span class="text-xs text-[#4a4a4a]">Blanco</span>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+          <div class="color-circle" style="background: #6b7f3b"></div>
+          <span class="text-xs text-[#4a4a4a]">Verde Olivo</span>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+          <div class="color-circle" style="background: #c4a265"></div>
+          <span class="text-xs text-[#4a4a4a]">Camel</span>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+          <div class="color-circle" style="background: #808080"></div>
+          <span class="text-xs text-[#4a4a4a]">Gris</span>
+        </div>
+      </div>
+    </section>
+    <!-- Carousel -->
+    <section class="py-16 px-6 max-w-3xl mx-auto">
+      <div class="carousel-container rounded-2xl overflow-hidden relative">
+        <div id="carousel-track" class="carousel-track">
+          <img
+            data-template-id="carousel-1"
+            class="canva-image h-[400px]"
+            loading="lazy"
+            src="https://images.pexels.com/photos/27008972/pexels-photo-27008972.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800"
+            alt="Elegant wedding couple embracing with joy."
+          />
+          <img
+            data-template-id="carousel-2"
+            class="canva-image h-[400px]"
+            loading="lazy"
+            src="https://images.pexels.com/photos/9080092/pexels-photo-9080092.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800"
+            alt="Two elegant gold wedding rings on a reflective surface."
+          />
+          <img
+            data-template-id="carousel-3"
+            class="canva-image h-[400px]"
+            loading="lazy"
+            src="https://images.pexels.com/photos/1546894/pexels-photo-1546894.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800"
+            alt="White rose bouquet with lush greenery."
+          />
+          <img
+            data-template-id="carousel-4"
+            class="canva-image h-[400px]"
+            loading="lazy"
+            src="https://images.pexels.com/photos/36028957/pexels-photo-36028957.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800"
+            alt="Romantic setting with candles and floral arrangements."
+          />
+        </div>
+        <button
+          id="car-prev"
+          class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 rounded-full p-2 shadow"
+        >
+          <i data-lucide="chevron-left" class="w-5 h-5"></i>
+        </button>
+        <button
+          id="car-next"
+          class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 rounded-full p-2 shadow"
+        >
+          <i data-lucide="chevron-right" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </section>
+    <!-- RSVP -->
+    <section class="max-w-xl mx-auto px-6 py-12">
+      <div
+        data-template-id="form-section"
+        class="canva-section rounded-2xl p-8 shadow-lg"
+        style="background: rgb(255, 255, 255)"
+      >
+        <h2
+          data-template-id="form-heading"
+          class="canva-text text-center mb-8"
+          style="
+            color: rgb(61, 43, 31);
+            font-weight: 600;
+            font-style: normal;
+            font-size: 24px;
+          "
+        >
+          Confirma tu Asistencia
+        </h2>
+        <form id="rsvp-form" class="space-y-5">
+          <div>
+            <label
+              data-template-id="label-name"
+              class="canva-text block mb-1 font-medium"
+              for="guest-name"
+              style="
+                color: rgb(61, 43, 31);
+                font-weight: 400;
+                font-style: normal;
+                font-size: 16px;
+              "
+              >Nombre completo</label
+            >
+            <input
+              id="guest-name"
+              type="text"
+              required=""
+              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#6b7f3b]"
+            />
+          </div>
+          <div>
+            <label
+              data-template-id="label-attendance"
+              class="canva-text block mb-1 font-medium"
+              for="attendance"
+              style="
+                color: rgb(61, 43, 31);
+                font-weight: 400;
+                font-style: normal;
+                font-size: 16px;
+              "
+              >¿Asistirás?</label
+            >
+            <select
+              id="attendance"
+              required=""
+              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#6b7f3b]"
+            >
+              <option value="">--</option>
+              <option value="Asistiré">Asistiré con gusto</option>
+              <option value="No asistiré">No podré asistir</option>
+            </select>
+          </div>
+          <div>
+            <label
+              data-template-id="label-guests"
+              class="canva-text block mb-1 font-medium"
+              for="num-guests"
+              style="
+                color: rgb(61, 43, 31);
+                font-weight: 400;
+                font-style: normal;
+                font-size: 16px;
+              "
+              >Número de invitados</label
+            >
+            <input
+              id="num-guests"
+              type="number"
+              min="1"
+              max="10"
+              value="1"
+              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#6b7f3b]"
+            />
+          </div>
+          <div>
+            <label
+              data-template-id="label-dietary"
+              class="canva-text block mb-1 font-medium"
+              for="dietary"
+              style="
+                color: rgb(61, 43, 31);
+                font-weight: 400;
+                font-style: normal;
+                font-size: 16px;
+              "
+              >Restricciones alimentarias (opcional)</label
+            >
+            <textarea
+              id="dietary"
+              rows="2"
+              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#6b7f3b]"
+            ></textarea>
+          </div>
+          <button
+            data-template-id="submit-btn"
+            type="submit"
+            class="canva-button w-full py-3 rounded-lg font-medium transition-opacity"
+            style="
+              background: rgb(212, 175, 55);
+              color: rgb(255, 255, 255);
+              font-weight: 600;
+              font-style: normal;
+              font-size: 16px;
+            "
+          >
+            Enviar Confirmación
+          </button>
+        </form>
+        <p
+          id="success-msg"
+          class="hidden mt-4 text-center text-green-700 font-medium"
+        >
+          ¡Confirmación enviada!
+        </p>
+        <p
+          id="error-msg"
+          class="hidden mt-4 text-center text-red-600 font-medium"
+        ></p>
+        <p
+          id="limit-msg"
+          class="hidden mt-4 text-center text-orange-600 font-medium"
+        >
+          Se alcanzó el límite de confirmaciones.
+        </p>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer
+      data-template-id="footer-section"
+      class="canva-footer py-10 text-center"
+      style="background: rgb(74, 90, 43)"
+    >
+      <h3
+        data-template-id="footer-names"
+        class="canva-text"
+        style="
+          color: rgb(212, 175, 55);
+          font-weight: 600;
+          font-style: normal;
+          font-size: 24px;
+        "
+      >
+        Walter &amp; Maria
+      </h3>
+      <p
+        data-template-id="footer-detail"
+        class="canva-text mt-2"
+        style="
+          color: rgb(255, 255, 255);
+          font-weight: 400;
+          font-style: normal;
+          font-size: 14px;
+        "
+      >
+        11 de Julio del 2026 · Guayaquil, Ecuador
+      </p>
+    </footer>
+    <script src="/_sdk/editing_sdk.js"></script>
+    <script>
+      // Countdown
+      const weddingDate = new Date("2026-07-11T17:00:00-05:00");
+      function updateCountdown() {
+        const now = new Date();
+        const diff = weddingDate - now;
+        if (diff <= 0) {
+          document.getElementById("countdown").innerHTML =
+            '<p class="text-white elegant text-2xl">¡El gran día ha llegado!</p>';
+          return;
+        }
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        document.getElementById("cd-days").textContent = d;
+        document.getElementById("cd-hours").textContent = h;
+        document.getElementById("cd-mins").textContent = m;
+        document.getElementById("cd-secs").textContent = s;
+      }
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      // Carousel
+      let carIdx = 0;
+      const track = document.getElementById("carousel-track");
+      function goTo(i) {
+        carIdx = i;
+        track.style.transform = `translateX(-${i * 100}%)`;
+      }
+      document
+        .getElementById("car-prev")
+        .addEventListener("click", () => goTo((carIdx - 1 + 4) % 4));
+      document
+        .getElementById("car-next")
+        .addEventListener("click", () => goTo((carIdx + 1) % 4));
+      setInterval(() => goTo((carIdx + 1) % 4), 4000);
+
+      // RSVP
+      let allData = [];
+      const form = document.getElementById("rsvp-form");
+      const submitBtn = form.querySelector('[data-template-id="submit-btn"]');
+      const successMsg = document.getElementById("success-msg");
+      const errorMsg = document.getElementById("error-msg");
+      const limitMsg = document.getElementById("limit-msg");
+
+      const handler = {
+        onDataChanged(data) {
+          allData = data;
+        },
+      };
+      (async () => {
+        await window.dataSdk.init(handler);
+      })();
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        successMsg.classList.add("hidden");
+        errorMsg.classList.add("hidden");
+        if (allData.length >= 999) {
+          limitMsg.classList.remove("hidden");
+          return;
+        }
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = "0.5";
+        const record = {
+          guest_name: document.getElementById("guest-name").value.trim(),
+          num_guests:
+            parseInt(document.getElementById("num-guests").value) || 1,
+          attendance: document.getElementById("attendance").value,
+          dietary_notes: document.getElementById("dietary").value.trim(),
+          submitted_at: new Date().toISOString(),
+        };
+        const result = await window.dataSdk.create(record);
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = "1";
+        if (result.isOk) {
+          successMsg.classList.remove("hidden");
+          form.reset();
+        } else {
+          errorMsg.textContent = "Error al enviar. Intenta de nuevo.";
+          errorMsg.classList.remove("hidden");
+        }
+      });
+
+      lucide.createIcons();
+    </script>
+    <script>
+      (function () {
+        function c() {
+          var b = a.contentDocument || a.contentWindow.document;
+          if (b) {
+            var d = b.createElement("script");
+            d.innerHTML =
+              "window.__CF$cv$params={r:'a1114ddb745f9af8',t:'MTc4MjM2MjUzMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+            b.getElementsByTagName("head")[0].appendChild(d);
+          }
+        }
+        if (document.body) {
+          var a = document.createElement("iframe");
+          a.height = 1;
+          a.width = 1;
+          a.style.position = "absolute";
+          a.style.top = 0;
+          a.style.left = 0;
+          a.style.border = "none";
+          a.style.visibility = "hidden";
+          document.body.appendChild(a);
+          if ("loading" !== document.readyState) c();
+          else if (window.addEventListener)
+            document.addEventListener("DOMContentLoaded", c);
+          else {
+            var e = document.onreadystatechange || function () {};
+            document.onreadystatechange = function (b) {
+              e(b);
+              "loading" !== document.readyState &&
+                ((document.onreadystatechange = e), c());
+            };
+          }
+        }
+      })();
+      function playMusic() {
+        const music = document.getElementById("bgMusic");
+        music.play();
+        document.getElementById("musicModal").style.display = "none";
+      }
+
+      setInterval(() => {
+        const petal = document.createElement("div");
+        petal.innerHTML = '🌿';
+        //petal.innerHTML = '<img src="https://images.emojiterra.com/google/noto-emoji/animated-emoji/1f342.gif" alt="Petal" />';
+        petal.style.position = "fixed";
+        petal.style.left = Math.random() * 100 + "vw";
+        petal.style.top = "-20px";
+        petal.style.fontSize = 20 + Math.random() * 20 + "px";
+        petal.style.zIndex = "999";
+        document.body.appendChild(petal);
+
+        let pos = 0;
+        const fall = setInterval(() => {
+          pos += 2;
+          petal.style.top = pos + "px";
+          petal.style.transform = `translateX(${Math.sin(pos / 30) * 20}px)`;
+
+          if (pos > window.innerHeight) {
+            clearInterval(fall);
+            petal.remove();
+          }
+        }, 16);
+      }, 1200);
+    </script>
+  </body>
+</html>

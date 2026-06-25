@@ -1,0 +1,86 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: Georgia, serif;
+    background:#f8f5ef;
+    color:#2d2d2d;
+}
+
+.hero{
+    height:100vh;
+    background:url('../assets/pareja1.jpg') center/cover;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.overlay{
+    background:rgba(0,0,0,0.45);
+    padding:40px;
+    border-radius:10px;
+    color:white;
+    text-align:center;
+}
+
+h1{
+    font-size:70px;
+    color:#d4af37;
+}
+
+section{
+    padding:70px 20px;
+    text-align:center;
+}
+
+h2{
+    color:#556b2f;
+    margin-bottom:20px;
+}
+
+#timer{
+    font-size:35px;
+    color:#d4af37;
+}
+
+.photos{
+    display:flex;
+    gap:20px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.photos img{
+    width:300px;
+    border-radius:20px;
+}
+
+form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    max-width:500px;
+    margin:auto;
+}
+
+input, select{
+    padding:15px;
+    border:1px solid #ccc;
+    border-radius:10px;
+}
+
+button{
+    background:#556b2f;
+    color:white;
+    border:none;
+    padding:15px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#6b8e23;
+}

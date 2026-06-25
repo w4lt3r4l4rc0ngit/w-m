@@ -1,0 +1,151 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: 'Cinzel', serif;
+    background:#fff;
+    color:#4b4b4b;
+}
+
+.hero{
+    background:url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600') center/cover;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.overlay{
+    background:rgba(85,107,47,0.75);
+    padding:40px;
+    text-align:center;
+    color:white;
+    width:100%;
+}
+
+h1{
+    font-family:'Great Vibes', cursive;
+    font-size:80px;
+    color:#d4af37;
+}
+
+h2{
+    margin:20px 0;
+}
+
+.verse{
+    max-width:700px;
+    margin:auto;
+    line-height:1.8;
+}
+
+#countdown{
+    margin-top:30px;
+    font-size:30px;
+    color:#d4af37;
+}
+
+.section{
+    padding:70px 20px;
+    text-align:center;
+}
+
+.floral{
+    background:linear-gradient(rgba(85,107,47,.9), rgba(85,107,47,.9)),
+               url('https://images.unsplash.com/photo-1460978812857-470ed1c77af0?q=80&w=1600');
+    background-size:cover;
+    color:white;
+}
+
+.event-card{
+    margin:30px auto;
+    padding:30px;
+    max-width:700px;
+    background:white;
+    color:black;
+    border-radius:12px;
+}
+
+button{
+    margin-top:15px;
+    padding:12px 25px;
+    border:none;
+    border-radius:25px;
+    background:#d4af37;
+    color:white;
+    cursor:pointer;
+}
+
+.colors{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+    margin-top:25px;
+}
+
+.circle{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    display:inline-block;
+    margin-right:8px;
+    vertical-align:middle;
+}
+
+.white{background:white;border:1px solid #ccc;}
+.olive{background:#556b2f;}
+.camel{background:#C19A6B;}
+.gray{background:#808080;}
+
+.gallery{
+    padding:70px 20px;
+    text-align:center;
+}
+
+.carousel{
+    position:relative;
+    width:80%;
+    max-width:800px;
+    margin:auto;
+}
+
+.carousel img{
+    width:100%;
+    display:none;
+    border-radius:20px;
+}
+
+.carousel img.active{
+    display:block;
+}
+
+.rsvp{
+    background:#f7f5ef;
+    text-align:center;
+    padding:70px 20px;
+}
+
+form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    max-width:400px;
+    margin:auto;
+}
+
+input, select{
+    padding:15px;
+    border:1px solid #ccc;
+    border-radius:10px;
+}
+
+footer{
+    background:#556b2f;
+    color:white;
+    text-align:center;
+    padding:40px;
+}

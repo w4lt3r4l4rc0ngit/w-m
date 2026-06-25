@@ -1,0 +1,10 @@
+CREATE DATABASE boda;
+
+USE boda;
+
+CREATE TABLE invitados(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(200),
+    asistencia VARCHAR(50),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
